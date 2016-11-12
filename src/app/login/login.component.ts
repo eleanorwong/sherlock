@@ -32,9 +32,7 @@ export class LoginComponent implements OnInit {
         }
       }).subscribe(response => {
         if(response.length === 0) {
-          this.af.database.list('/users/').update(auth.uid, { 
-            name: auth.facebook.displayName, 
-            picture: auth.facebook.photoURL, 
+          this.af.database.list('/users/').update(auth.uid, {
             activeGame: "" 
           });
         }
