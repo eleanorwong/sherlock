@@ -1,5 +1,5 @@
-<img [src]="(users | async)?.picture" alt="">
-<span>{{(users | async)?.name}}</span>
+<img [src]="user.picture" alt="">
+<span>{{user.name}}</span>
 
 <nav>
   <a routerLink="/join" routerLinkActive="active">Join Game</a>

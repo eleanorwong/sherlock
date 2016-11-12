@@ -14,8 +14,7 @@ export class AuthService {
       this.showNav = (auth != null);
       if(auth == null) {
         this.router.navigate(['login']);
-      }
-      if(this.router.url === '/login' && auth != null) {
+      } else if(this.router.url === '/login' && auth != null) {
         this.router.navigate(['menu']);
       }
     });
@@ -26,6 +25,6 @@ export class AuthService {
   }
 
   public getUID() {
-    return this.auth.uid;
+    return this.auth ? this.auth.uid : "";
   }
 }

@@ -10,9 +10,13 @@ import { AuthService } from '../services/auth.service';
 export class MenuComponent implements OnInit {
 
   private users;
+  private user;
 
   constructor(private af: AngularFire, private authService: AuthService) {
-    this.users = this.af.database.object('/users/' + this.authService.getUID());
+    this.user = {picture: ""};
+    this.users = this.af.database.object('/users/' + this.authService.getUID()).subscribe(item => {
+      this.user = item;
+    });
   }
 
   ngOnInit() {
