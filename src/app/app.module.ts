@@ -13,6 +13,8 @@ import { RoleComponent } from './game/role/role.component';
 import { CardBaseComponent } from './shared/card-base/card-base.component';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { CycleComponent } from './game/cycle/cycle.component';
+import { VoteComponent } from './game/actions/vote/vote.component';
+import { TargetComponent } from './game/actions/target/target.component';
 
 
 var firebaseConfig = {
@@ -35,7 +37,9 @@ const myFirebaseAuthConfig = {
     CreateComponent,
     RoleComponent,
     CardBaseComponent,
-    CycleComponent
+    CycleComponent,
+    VoteComponent,
+    TargetComponent
   ],
   imports: [
     BrowserModule,
