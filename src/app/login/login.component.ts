@@ -37,9 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         }).subscribe(response => {
           if(response.length === 0) {
             this.af.database.list('/users/').update(auth.uid, {
-              activeGame: "",
-              picture: auth.facebook.photoURL,
-              name: auth.facebook.displayName
+              activeGame: ""
             });
           }
           items.unsubscribe();
