@@ -1,3 +1,9 @@
 <p>
   vote works!
 </p>
+
+<ul>
+  <li *ngFor="let player of players;">
+    <input type="checkbox" *ngIf="player.isAlive"> : {{player.$key}}
+  </li>
+<ul>
