@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { GameComponent } from './game/game.component';
+import { JoinComponent } from './game/join/join.component';
+import { CycleComponent } from './game/cycle/cycle.component';
 import { CreateComponent } from './create/create.component';
 import { RoleComponent } from './role/role.component';
 import { LobbyComponent } from './lobby/lobby.component';
@@ -13,6 +15,7 @@ const routes: Routes = [
     { path: 'login',  component: LoginComponent },
     { path: ':id/lobby',  component: LobbyComponent },
     { path: 'create', component: CreateComponent },
+    { path: 'join', component: JoinComponent },
     { path: 'role', component: RoleComponent },
     { path: 'menu', component: MenuComponent},
     { path: ':id/game', component: GameComponent }

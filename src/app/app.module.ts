@@ -12,6 +12,8 @@ import { CreateComponent } from './create/create.component';
 import { RoleComponent } from './role/role.component';
 import { CardBaseComponent } from './shared/card-base/card-base.component';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+import { CycleComponent } from './game/cycle/cycle.component';
+import { JoinComponent } from './game/join/join.component';
 import { LobbyComponent } from './lobby/lobby.component';
 import { MenuComponent } from './menu/menu.component';
 
@@ -36,6 +38,8 @@ const myFirebaseAuthConfig = {
     CreateComponent,
     RoleComponent,
     CardBaseComponent,
+    CycleComponent,
+    JoinComponent,
     LobbyComponent,
     MenuComponent
   ],
