@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFire } from 'AngularFire2';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app works!';
 
-  constructor() {
+  constructor(private af: AngularFire) {
 
+  }
+
+  logout() {
+     this.af.auth.logout();
   }
 }

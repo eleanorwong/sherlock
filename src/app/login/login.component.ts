@@ -27,14 +27,14 @@ export class LoginComponent implements OnInit {
         }
       }).subscribe(response => {
         if(response.length === 0) {
-          this.af.database.list('/users/').update(auth.uid, { name: auth.facebook.displayName, activeGame: "" });
+          this.af.database.list('/users/').update(auth.uid, { 
+            name: auth.facebook.displayName, 
+            picture: auth.facebook.photoURL, 
+            activeGame: "" 
+          });
         }
         items.unsubscribe();
       });
     });
-  }
-
-  logout() {
-     this.af.auth.logout();
   }
 }
