@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire } from 'angularfire2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,13 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 })
 export class AppComponent {
   title = 'app works!';
-  items: FirebaseListObservable<any[]>;
 
-  constructor(af: AngularFire) {
-    this.items = af.database.list('/test');
+  constructor(private af: AngularFire, private router: Router) {
+
+  }
+
+  logout() {
+     this.af.auth.logout();
+     this.router.navigate(['login']);
   }
 }

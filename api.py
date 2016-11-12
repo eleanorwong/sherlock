@@ -1,6 +1,8 @@
 from enum import Enum
 import pyrebase
 import json
+#import random
+#from sets import Set
 
 config = {
   "apiKey": "AIzaSyDzV4LHW-Z177LuCopYh7Vsd65AShwU3F8",
@@ -23,11 +25,38 @@ class game(object):
     self.end_of_day = True
     self.num_mafia_remaining = 4
     self.num_town_remaining = 0
-    self.players = []
+  """
+  def giveRoles(self):
+    s = Set([])
 
-  # def giveRoles(self):
-    #random role assignment
+    all_players = db.child("games").child(self.gameID).child("players").get()    
+    for userID in all_players.each(): 
+      s.add(userID.key()) #CHECK THIS PLEASE, could be: .value()
 
+    print s
+    
+    r = random.choice(list(s))
+    db.child("games").child(self.gameID).child("players").child(r).child("role").set("SHERIFF")
+    s.remove(r)
+    
+    r = random.choice(list(s))
+    db.child("games").child(self.gameID).child("players").child(r).child("role").set("DOCTOR")
+    s.remove(r)
+
+    tupleCount = 2
+    while len(s)>0:
+      if tupleCount < 0:
+        tupleCount = 2
+      if tupleCount == 2:
+        r = random.choice(list(s))
+        db.child("games").child(self.gameID).child("players").child(r).child("role").set("MAFIA")
+        s.remove(r)
+      else:
+        r = random.choice(list(s))
+        db.child("games").child(self.gameID).child("players").child(r).child("role").set("VILLAGER")
+        s.remove(r)   
+      tupleCount -= 1
+  """
   def death(self, userID, deathCause):
     deadPlayer = db.child("games").child(self.gameID).child("players").child(userID)
     role = deadPlayer.child("role").get()
