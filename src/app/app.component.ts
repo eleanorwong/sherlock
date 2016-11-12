@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,24 +9,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  private title = 'app works!';
-  private showNav: boolean;
 
-  constructor(private af: AngularFire, private router: Router) {
-    console.log(router);
-    this.af.auth.subscribe(auth => {
-      console.log(auth);
-      this.showNav = (auth != null);
-      if(auth == null) {
-        this.router.navigate(['login']);
-      }
-      if(this.router.url === '/login' && auth != null) {
-        this.router.navigate(['menu']);
-      }
-    });
+  constructor(private af: AngularFire, private router: Router, private authService: AuthService) {
+    
   }
   
   logout() {
      this.af.auth.logout();
+  }
+
+  shouldShowNav() {
+    return this.authService.shouldShowNav();
   }
 }

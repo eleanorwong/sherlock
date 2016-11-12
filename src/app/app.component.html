@@ -8,11 +8,9 @@
     <div class="container">
 
     </div>
-    <button *ngIf="showNav" md-button (click)="start.open()">
+    <button *ngIf="shouldShowNav()" md-button (click)="start.open()">
         <md-icon>home</md-icon>
     </button>
-
-
 
         <router-outlet></router-outlet>
 

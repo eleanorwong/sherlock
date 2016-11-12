@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AngularFire } from 'angularfire2';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,12 +9,18 @@ import { AngularFire } from 'angularfire2';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private af: AngularFire) { 
-    
+  private users;
+
+  constructor(private af: AngularFire, private authService: AuthService) {
+    this.users = this.af.database.object('/users/' + this.authService.getUID());
   }
 
   ngOnInit() {
 
+  }
+
+  ngOnDestroy() {
+    this.users.unsubscribe();
   }
 
 }

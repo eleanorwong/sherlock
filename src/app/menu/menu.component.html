@@ -1,7 +1,5 @@
-<img [src]="(af.auth | async)?.facebook.photoURL" alt="">
-<span>{{(af.auth | async)?.facebook.displayName}}</span>
-
-{{ (af.auth | async)?.uid }}
+<img [src]="(users | async)?.picture" alt="">
+<span>{{(users | async)?.name}}</span>
 
 <nav>
   <a routerLink="/join" routerLinkActive="active">Join Game</a>

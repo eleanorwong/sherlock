@@ -18,6 +18,8 @@ import { JoinComponent } from './join/join.component';
 import { LobbyComponent } from './lobby/lobby.component';
 import { MenuComponent } from './menu/menu.component';
 
+import { AuthService } from './services/auth.service';
+
 
 var firebaseConfig = {
   apiKey: "AIzaSyDzV4LHW-Z177LuCopYh7Vsd65AShwU3F8",
@@ -53,7 +55,7 @@ const myFirebaseAuthConfig = {
     MaterialModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],
-  providers: [ ],
+  providers: [ AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
