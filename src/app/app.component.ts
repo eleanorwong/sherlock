@@ -8,14 +8,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app works!';
+  private title = 'app works!';
+  private showNav: boolean;
 
   constructor(private af: AngularFire, private router: Router) {
+    af.auth.subscribe(auth => {
+      this.showNav = (auth != null);
+      if(!this.showNav) {
+        this.router.navigate(['login']);
+      }
+    });
 
   }
 
   logout() {
      this.af.auth.logout();
-     this.router.navigate(['login']);
   }
 }
