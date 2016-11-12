@@ -5,9 +5,15 @@
       <button md-button #closeStartButton (click)="start.close()">Close</button>
       <button md-button (click)="start.close(); logout();">Logout</button>
     </md-sidenav>
+    <div class="container">
 
-    <button *ngIf="showNav" md-button (click)="start.open()">Open start sidenav</button>
+    </div>
+    <button *ngIf="showNav" md-button (click)="start.open()">
+        <md-icon>home</md-icon>
+    </button>
 
-    <router-outlet></router-outlet>
+
+
+        <router-outlet></router-outlet>
 
 </md-sidenav-layout>

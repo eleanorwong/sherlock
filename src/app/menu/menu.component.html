@@ -1,5 +1,5 @@
-<img src={{picture}} alt="">
-<span>{{name}}</span>
+<img [src]="(af.auth | async)?.facebook.photoURL" alt="">
+<span>{{(af.auth | async)?.facebook.displayName}}</span>
 
 {{ (af.auth | async)?.uid }}
 
