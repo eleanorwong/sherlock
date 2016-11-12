@@ -7,12 +7,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { GameComponent } from './game/game.component';
+import { RoleComponent } from './game/role/role.component';
+import { CardBaseComponent } from './shared/card-base/card-base.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    GameComponent
+    GameComponent,
+    RoleComponent,
+    CardBaseComponent
   ],
   imports: [
     BrowserModule,
