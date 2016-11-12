@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public af: AngularFire, private router: Router) {
+  constructor(public af: AngularFire, private router: Router, private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -22,11 +23,11 @@ export class LoginComponent implements OnInit {
         const items = this.af.database.list('/users', {
           query: {
             orderByKey: true,
-            equalTo: auth.uid
+            equalTo: this.authService.getUID()
           }
         }).subscribe(response => {
           if(response.length === 0) {
-            this.af.database.list('/users/').update(auth.uid, {
+            this.af.database.list('/users/').update(this.authService.getUID(), {
               activeGame: "",
               picture: auth.facebook.photoURL,
               name: auth.facebook.displayName
