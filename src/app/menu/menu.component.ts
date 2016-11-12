@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFire } from 'angularfire2';
 
 @Component({
   selector: 'app-menu',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  private picture: String;
+  private name: String;
+
+  constructor(public af: AngularFire) { 
+    af.auth.subscribe(auth => {
+      this.picture = auth.facebook.photoURL;
+      this.name = auth.facebook.displayName;
+    })
+  }
 
   ngOnInit() {
   }

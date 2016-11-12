@@ -1,4 +1,7 @@
-<img src={{ (af.auth | async)?.uid }} alt="">
+<img src={{picture}} alt="">
+<span>{{name}}</span>
+
+{{ (af.auth | async)?.uid }}
 
 <nav>
   <a routerLink="/join" routerLinkActive="active">Join Game</a>
