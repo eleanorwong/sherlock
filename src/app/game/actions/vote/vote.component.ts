@@ -10,27 +10,40 @@ export class VoteComponent implements OnInit {
 
   isLoading: boolean;
   uid: string;
+  name: string;
   activeGameID: string;
   players: any;
 
   constructor(private af: AngularFire) {
     this.isLoading = false;
+    this.players = [];
     this.af.auth.subscribe((auth) => {
         this.uid = auth.uid;
+        this.af.database.object('/users/' + this.uid).subscribe(result => {
+          this.name = result.name;
+        })
         this.getValidVoters();
     })
   }
 
   getValidVoters () {
-    console.log(this.uid);
+    //console.log(this.uid);
     const activeGameID = this.af.database.object('/users/' + this.uid + '/activeGame');
     activeGameID.subscribe( result => {
-      const players = this.af.database.list('/games/' + result.$value + '/players/');
-      players.subscribe(result => {
-        console.log(result);
-        this.players = result;
-      })
-    })
+      const playersListner = this.af.database.list('/games/' + result.$value + '/players/');
+      playersListner.subscribe(playerList => {
+        playerList.forEach( player => {
+          //console.log(player)
+          this.af.database.object('/users/' + player.$key).subscribe(result => {
+            this.players.push(
+              {
+                name: result.name,
+                isAlive: player.isAlive
+              });
+          });
+        });
+      });
+    });
   }
 
   ngOnInit() {
