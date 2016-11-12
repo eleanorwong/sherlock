@@ -50,7 +50,7 @@ export class CreateComponent implements OnInit {
                   isAlive: true
               }
           );
-          this.router.navigate(['/lobby']);
+          this.router.navigate([this.uid, 'lobby']);
       });
 
   }

@@ -9,10 +9,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { GameComponent } from './game/game.component';
 import { CreateComponent } from './create/create.component';
-import { RoleComponent } from './game/role/role.component';
+import { RoleComponent } from './role/role.component';
 import { CardBaseComponent } from './shared/card-base/card-base.component';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
-import { CycleComponent } from './game/cycle/cycle.component';
 import { LobbyComponent } from './lobby/lobby.component';
 
 
@@ -36,7 +35,6 @@ const myFirebaseAuthConfig = {
     CreateComponent,
     RoleComponent,
     CardBaseComponent,
-    CycleComponent,
     LobbyComponent
   ],
   imports: [
