@@ -1,5 +1,5 @@
 from enum import Enum
-from flask import Flask
+from flask import Flask, json, request
 import pyrebase
 import json
 #import random
@@ -47,27 +47,25 @@ class game(object):
 
 
 def stream_handler(post):
-  # User database info
   path = post["path"].split("/")
-  if path[len(path) - 2] == "past_games":
-    me.finishedGame(path[2])
-  if path[len(path) - 1] == "active_game":
-    me.addActiveGame(path[2], post["data"])
+  gameID = path[2]
+
+  # if path[len(path) - 2] == "past_games":
+  #   me.finishedGame(path[2])
+  # if path[len(path) - 1] == "isAlive" and path["data"] == False:
+
+  #   me.addActiveGame(path[2], post["data"])
 
   # Game database info
 
-@app.route('/winner')
-def api_winner():
-  return db.child("games").child(self.gameID).child("winner") == "MAFIA"
+@app.route('/start/<startID>')
+def api_start(startID):
+  return "Will start the game %s\n" % startID
 
-@app.route('/start')
-def api_start():
-  print("Will start the game")
-
-# mygame = game("-KWNPXBaDrA8BK8WZBK4")
-# db.child("games").child("-KWNPXBaDrA8BK8WZBK4").child("players").child("Mortimer 'Morty' Smith").child("role").set("MAFIA")
-# db.child("games").child("-KWNPXBaDrA8BK8WZBK4").child("config").child("num_mafia_remaining").set(4)
-# mygame.death("Mortimer 'Morty' Smith", "Lynched by town")
+mygame = game("-KWNPXBaDrA8BK8WZBK4")
+db.child("games").child("-KWNPXBaDrA8BK8WZBK4").child("players").child("Mortimer 'Morty' Smith").child("role").set("DOCTOR")
+db.child("games").child("-KWNPXBaDrA8BK8WZBK4").child("config").child("num_mafia_remaining").set(4)
+mygame.death("Mortimer 'Morty' Smith", "Lynched by town")
 
 my_stream = db.child("/").stream(stream_handler)
 
