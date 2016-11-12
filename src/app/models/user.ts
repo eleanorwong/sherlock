@@ -1,4 +1,6 @@
 export class User {
-    activeGame: string;
+    activeGame: string; 
     pastGames: Array<string>;
+
+    constructor(uid: String) {}
 }
