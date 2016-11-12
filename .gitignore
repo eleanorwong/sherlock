@@ -1,3 +1,5 @@
+js/config/firebase.json
+
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
@@ -32,3 +34,4 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+>>>>>>> 3c97cef4e206653f5146f972f6795a4e8bd8d9e5
