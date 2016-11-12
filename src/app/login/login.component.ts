@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
@@ -8,22 +8,12 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
 
   constructor(public af: AngularFire, private router: Router) {
-
-    this.af.auth.subscribe(auth => {
-      if(auth != null) {
-        this.router.navigate(['menu']);
-      }
-    });
   }
 
   ngOnInit() {
-  }
-
-  ngOnDestroy() {
-    
   }
 
   login() {
@@ -37,7 +27,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         }).subscribe(response => {
           if(response.length === 0) {
             this.af.database.list('/users/').update(auth.uid, {
-              activeGame: ""
+              activeGame: "",
+              picture: auth.facebook.photoURL,
+              name: auth.facebook.displayName
             });
           }
           items.unsubscribe();

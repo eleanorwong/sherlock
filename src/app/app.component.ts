@@ -12,18 +12,19 @@ export class AppComponent {
   private showNav: boolean;
 
   constructor(private af: AngularFire, private router: Router) {
-    af.auth.subscribe(auth => {
+    console.log(router);
+    this.af.auth.subscribe(auth => {
+      console.log(auth);
       this.showNav = (auth != null);
-      if(!this.showNav) {
+      if(auth == null) {
         this.router.navigate(['login']);
       }
-      if(auth != null) {
-        //this.router.navigate(['menu']); 
+      if(this.router.url === '/login' && auth != null) {
+        this.router.navigate(['menu']);
       }
     });
-
   }
-
+  
   logout() {
      this.af.auth.logout();
   }
