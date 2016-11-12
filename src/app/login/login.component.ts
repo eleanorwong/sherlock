@@ -10,12 +10,17 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public af: AngularFire, private router: Router) { }
+  constructor(public af: AngularFire, private router: Router) { 
+
+    this.af.auth.subscribe(auth => {
+      if(auth != null) {
+        this.router.navigate(['menu']); 
+      }
+    });
+  }
 
   ngOnInit() {
-    if(this.af.auth.getAuth != null) {
-      this.router.navigate(['menu']);
-    }
+
   }
 
   login() {
