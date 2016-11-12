@@ -1,8 +1,8 @@
 from enum import Enum
 import pyrebase
 import json
-import random
-from sets import Set
+#import random
+#from sets import Set
 
 config = {
   "apiKey": "AIzaSyDzV4LHW-Z177LuCopYh7Vsd65AShwU3F8",
@@ -25,7 +25,7 @@ class game(object):
     self.end_of_day = True
     self.num_mafia_remaining = 4
     self.num_town_remaining = 0
-
+"""
   def giveRoles(self):
     s = Set([])
 
@@ -51,12 +51,12 @@ class game(object):
         r = random.choice(list(s))
         db.child("games").child(self.gameID).child("players").child(r).child("role").set("MAFIA")
         s.remove(r)
-      else
+      else:
         r = random.choice(list(s))
         db.child("games").child(self.gameID).child("players").child(r).child("role").set("VILLAGER")
         s.remove(r)   
       tupleCount -= 1
-
+"""
   def death(self, userID, deathCause):
     deadPlayer = db.child("games").child(self.gameID).child("players").child(userID)
     role = deadPlayer.child("role").get()
