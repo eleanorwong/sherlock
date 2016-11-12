@@ -11,14 +11,12 @@ export class MenuComponent implements OnInit {
   private picture: String;
   private name: String;
 
-  constructor(public af: AngularFire) { 
-    af.auth.subscribe(auth => {
-      this.picture = auth.facebook.photoURL;
-      this.name = auth.facebook.displayName;
-    })
+  constructor(private af: AngularFire) { 
+    
   }
 
   ngOnInit() {
+
   }
 
 }
