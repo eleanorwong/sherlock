@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFire } from 'AngularFire2';
+// import { AngularFire } from 'AngularFire2';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +9,11 @@ import { AngularFire } from 'AngularFire2';
 export class AppComponent {
   title = 'app works!';
 
-  constructor(private af: AngularFire) {
+  constructor() {
 
   }
 
   logout() {
-     this.af.auth.logout();
+    //  this.af.auth.logout();
   }
 }
