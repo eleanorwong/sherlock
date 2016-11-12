@@ -13,6 +13,7 @@ import { RoleComponent } from './game/role/role.component';
 import { CardBaseComponent } from './shared/card-base/card-base.component';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { CycleComponent } from './game/cycle/cycle.component';
+import { JoinComponent } from './game/join/join.component';
 
 
 var firebaseConfig = {
@@ -35,7 +36,8 @@ const myFirebaseAuthConfig = {
     CreateComponent,
     RoleComponent,
     CardBaseComponent,
-    CycleComponent
+    CycleComponent,
+    JoinComponent
   ],
   imports: [
     BrowserModule,
