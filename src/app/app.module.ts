@@ -19,6 +19,7 @@ import { LobbyComponent } from './lobby/lobby.component';
 import { MenuComponent } from './menu/menu.component';
 
 import { AuthService } from './services/auth.service';
+import { BadgeComponent } from './badge/badge.component';
 
 
 var firebaseConfig = {
@@ -45,7 +46,8 @@ const myFirebaseAuthConfig = {
     TargetComponent,
     JoinComponent,
     LobbyComponent,
-    MenuComponent
+    MenuComponent,
+    BadgeComponent
   ],
   imports: [
     BrowserModule,

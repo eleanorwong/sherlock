@@ -1,0 +1,16 @@
+.badge {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile {
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+}
+
+.name {
+    font-size: 14pt;
+}
