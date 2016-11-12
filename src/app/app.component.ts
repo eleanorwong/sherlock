@@ -17,6 +17,9 @@ export class AppComponent {
       if(!this.showNav) {
         this.router.navigate(['login']);
       }
+      if(auth != null) {
+        this.router.navigate(['menu']); 
+      }
     });
 
   }
