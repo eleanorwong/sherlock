@@ -6,6 +6,7 @@ import { GameComponent } from './game/game.component';
 import { CreateComponent } from './create/create.component';
 import { RoleComponent } from './role/role.component';
 import { LobbyComponent } from './lobby/lobby.component';
+import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: ':id/lobby',  component: LobbyComponent },
     { path: 'create', component: CreateComponent },
     { path: 'role', component: RoleComponent },
+    { path: 'menu', component: MenuComponent},
     { path: ':id/game', component: GameComponent }
 ];
 

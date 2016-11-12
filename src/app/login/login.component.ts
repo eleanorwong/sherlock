@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { User } from '../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +10,12 @@ import { User } from '../models/user';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public af: AngularFire) { }
+  constructor(public af: AngularFire, private router: Router) { }
 
   ngOnInit() {
+    if(this.af.auth.getAuth != null) {
+      this.router.navigate(['menu']);
+    }
   }
 
   login() {
@@ -23,7 +27,7 @@ export class LoginComponent implements OnInit {
         }
       }).subscribe(response => {
         if(response.length === 0) {
-          this.af.database.list('/users/').update(auth.uid, { activeGame: "" });
+          this.af.database.list('/users/').update(auth.uid, { name: auth.facebook.displayName, activeGame: "" });
         }
         items.unsubscribe();
       });

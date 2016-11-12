@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 @Component({
   selector: 'app-lobby',
@@ -8,13 +9,16 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class LobbyComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  private id;
+  private users: FirebaseListObservable<any>;
+
+  constructor(private route: ActivatedRoute, private af: AngularFire) { }
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
-      let id = +params['id'];
-      console.log(id);
+      this.id = params['id'];
     });
+    this.users = this.af.database.list('/users');
   }
 
 }

@@ -13,6 +13,7 @@ import { RoleComponent } from './role/role.component';
 import { CardBaseComponent } from './shared/card-base/card-base.component';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { LobbyComponent } from './lobby/lobby.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 var firebaseConfig = {
@@ -35,7 +36,8 @@ const myFirebaseAuthConfig = {
     CreateComponent,
     RoleComponent,
     CardBaseComponent,
-    LobbyComponent
+    LobbyComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
