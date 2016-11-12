@@ -18,7 +18,7 @@ export class AppComponent {
         this.router.navigate(['login']);
       }
       if(auth != null) {
-        this.router.navigate(['menu']); 
+        //this.router.navigate(['menu']); 
       }
     });
 
