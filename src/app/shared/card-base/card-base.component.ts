@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card-base',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-base.component.scss']
 })
 export class CardBaseComponent implements OnInit {
-  isRoleCard = true;
+  @Input() isRoleCard:boolean;
 
   constructor() { }
 

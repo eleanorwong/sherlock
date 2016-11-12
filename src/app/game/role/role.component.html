@@ -1,11 +1,11 @@
 <div id="role">
   <p>role works!</p>
-  <app-card-base></app-card-base>
+  <app-card-base [isRoleCard]=isRoleCard></app-card-base>
 
   <h3> Is this a "role" card:
     <input type="checkbox" [(ngModel)]="isRoleCard">
   </h3>
-  
+
   <div *ngIf="isRoleCard">
     <h1> LOG: </h1> <!--> {{player-log}}<-->
   </div>
