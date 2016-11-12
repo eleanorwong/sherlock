@@ -1,0 +1,19 @@
+<div class="container">
+    <h1>Join an Existing Round</h1>
+    <form>
+        <div id="join-game">
+            <label>
+                <md-input placeholder="Enter Game Key" [(ngModel)]="gameID" name="gameID"></md-input>
+            </label>
+        </div>
+        <div id="join-submit">
+            <button md-button type="submit" (click)="joinGame()">
+                Join!
+            </button> <md-spinner *ngIf="isLoading"></md-spinner>
+            <button md-button type="submit" (click)="goBack()">
+                Back
+            </button>
+        </div>
+    </form>
+
+</div>

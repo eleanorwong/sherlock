@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Game } from '../../models/game';
+import { Game } from '../models/game';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create',
@@ -9,12 +11,26 @@ import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'a
 })
 export class CreateComponent implements OnInit {
 
+  ngOnInit() {
+  }
+
+  constructor(af: AngularFire, private router: Router, private location: Location) {
+    this.af = af;
+    af.auth.subscribe((auth) => {
+        this.uid = auth.uid;
+    });
+
+    this.games = af.database.list('/games');
+    this.user = af.database.list('/users/');
+  }
+
   newGame: Game = {
       config: {
           dayLength: 5,
           nightLength: 5
       },
-      players: []
+      players: [],
+      active: false
   };
 
   af: AngularFire;
@@ -30,26 +46,19 @@ export class CreateComponent implements OnInit {
   createGame() {
       this.games.push(this.newGame).then((item) => {
           this.user.update(this.uid, {activeGame: item.key});
-          this.af.database.list('games/'+item.key+'/players/').update(
+          this.af.database.list('games/' + item.key + '/players/').update(
               this.uid,
               {
                   isAlive: true
               }
           );
+          this.router.navigate([item.key, 'lobby']);
       });
+
   }
 
-  constructor(af: AngularFire) {
-    this.af = af;
-    af.auth.subscribe((auth) => {
-        this.uid = auth.uid;
-    });
-
-    this.games = af.database.list('/games');
-    this.user = af.database.list('/users/');
-  }
-
-  ngOnInit() {
+  goBack(): void {
+    this.location.back();
   }
 
 }
