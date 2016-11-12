@@ -1,3 +1,31 @@
-<p>
-  card-base works!
-</p>
+<div id="card-base">
+  <!--> The letter A is either the first letter of {{title}} <-->
+  <!--> or it's another field in the DB {{badge-letter}} <-->
+  <div id="circle">
+    <div id="circle-text">A</div>
+  </div>
+
+  <h2>
+    Role Name <!--> {{title}} <-->
+  </h2>
+
+  <!--> IF PARENT == ROLE, do the following ELSE do nothing <-->
+
+  <!--> the checkbox is here just to toggle (see how it looks w/o DB) <-->
+  <h3>  Is this a "role" card:
+    <input type="checkbox" [(ngModel)]="isRoleCard">
+  </h3>
+
+  <div *ngIf="isRoleCard">
+    <!--> {{description-main}} <-->
+    <p>
+      This is the role description. Role is described here. Did I mention that
+      you can find information on your role? It's fucking sweet.
+    </p>
+    <!--> {{description-sub}} <-->
+    <h2>
+      Here goes your affiliation. Tells you if you're part of the cool crew or
+      the towns-people plebs.
+    </h2>
+  </div>
+</div>
