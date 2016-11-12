@@ -37,6 +37,12 @@ class game(object):
     db.child("games").child(self.gameID).child("players").child(userID).child("isAlive").set(False)
     db.child("games").child(self.gameID).child("players").child(userID).child("causeOfDeath").set(deathCause)
 
+  def checkWinner(self):
+    if self.num_mafia_remaining == self.num_town_remaining:
+      db.child("games").child(self.gameID).child("config").child("winner").set("MAFIA")
+    elif self.num_mafia_remaining == 0:
+      db.child("games").child(self.gameID).child("config").child("winner").set("TOWN")
+
 
 def stream_handler(post):
   # User database info
