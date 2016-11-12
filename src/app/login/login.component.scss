@@ -1,0 +1,28 @@
+.login {
+    background: olive;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button {
+    border: none;
+    width: 250px;
+    height: 75px;
+    border-radius: 25px;
+    font-size: 14pt;
+    text-transform: uppercase;
+    background: #3b5998;
+    color: #eeeeee;
+    letter-spacing: 3px;
+}
+
+.logo {
+
+}
+
+.facebook {
+    background-image: url('facebook.svg');
+}
