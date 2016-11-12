@@ -19,6 +19,7 @@ class game(object):
   def __init__(self, gameID):
     super(game, self).__init__()
     self.gameID = gameID
+    db.child("games").child(gameID).child("winner").set()
     self.end_of_day = True
     self.num_mafia_remaining = 4
     self.num_town_remaining = 0
@@ -39,9 +40,9 @@ class game(object):
 
   def checkWinner(self):
     if self.num_mafia_remaining == self.num_town_remaining:
-      db.child("games").child(self.gameID).child("config").child("winner").set("MAFIA")
+      db.child("games").child(self.gameID).child("winner").set("MAFIA")
     elif self.num_mafia_remaining == 0:
-      db.child("games").child(self.gameID).child("config").child("winner").set("TOWN")
+      db.child("games").child(self.gameID).child("winner").set("TOWN")
 
 
 def stream_handler(post):
