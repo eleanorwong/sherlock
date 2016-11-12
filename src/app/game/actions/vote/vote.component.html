@@ -2,8 +2,10 @@
   vote works!
 </p>
 
-<ul>
-  <li *ngFor="let player of players;">
-    <input type="checkbox" *ngIf="player.isAlive"> : {{player.name}}
-  </li>
-<ul>
+<md-radio-group>
+  <div *ngFor="let player of players">
+    <md-radio-button *ngIf="player.isAlive">
+      {{player.name}}
+    </md-radio-button>
+  </div>
+</md-radio-group>
