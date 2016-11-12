@@ -39,15 +39,11 @@ const myFirebaseAuthConfig = {
     CreateComponent,
     RoleComponent,
     CardBaseComponent,
-<<<<<<< HEAD
-    CycleComponent,
     VoteComponent,
-    TargetComponent
-=======
+    TargetComponent,
     JoinComponent,
     LobbyComponent,
     MenuComponent
->>>>>>> 151b4f31e8d9d78079202e42b65da4a4dbadeb0d
   ],
   imports: [
     BrowserModule,
