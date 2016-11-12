@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from '../models/game';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create',
@@ -13,7 +14,7 @@ export class CreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(af: AngularFire, private router: Router) {
+  constructor(af: AngularFire, private router: Router, private location: Location) {
     this.af = af;
     af.auth.subscribe((auth) => {
         this.uid = auth.uid;
@@ -54,6 +55,10 @@ export class CreateComponent implements OnInit {
           this.router.navigate([item.key, 'lobby']);
       });
 
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }
