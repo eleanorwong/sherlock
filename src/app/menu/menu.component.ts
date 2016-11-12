@@ -8,9 +8,6 @@ import { AngularFire } from 'angularfire2';
 })
 export class MenuComponent implements OnInit {
 
-  private picture: String;
-  private name: String;
-
   constructor(private af: AngularFire) { 
     
   }

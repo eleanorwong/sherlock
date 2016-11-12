@@ -11,12 +11,6 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(public af: AngularFire, private router: Router) {
-
-    this.af.auth.subscribe(auth => {
-      if(auth != null) {
-        this.router.navigate(['menu']);
-      }
-    });
   }
 
   ngOnInit() {
@@ -24,22 +18,23 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.af.auth.login().then(auth => {
-
-      const items = this.af.database.list('/users', {
-        query: {
-          orderByKey: true,
-          equalTo: auth.uid
-        }
-      }).subscribe(response => {
-        if(response.length === 0) {
-          this.af.database.list('/users/').update(auth.uid, {
-            activeGame: "",
-            picture: auth.auth.photoURL,
-            name: auth.auth.displayName
-          });
-        }
-        items.unsubscribe();
-      });
+      if(auth != null) {
+        const items = this.af.database.list('/users', {
+          query: {
+            orderByKey: true,
+            equalTo: auth.uid
+          }
+        }).subscribe(response => {
+          if(response.length === 0) {
+            this.af.database.list('/users/').update(auth.uid, {
+              activeGame: "",
+              picture: auth.facebook.photoURL,
+              name: auth.facebook.displayName
+            });
+          }
+          items.unsubscribe();
+        });
+      }
     });
   }
 }
