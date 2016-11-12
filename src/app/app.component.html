@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <nav>
   <a routerLink="/login" routerLinkActive="active">Login</a>
   <a routerLink="/game" routerLinkActive="active">Game</a>
@@ -5,3 +6,16 @@
   <a routerLink="/join" routerLinkActive="active">Join Game</a>
 </nav>
 <router-outlet></router-outlet>
+<md-sidenav-layout>
+    <md-sidenav #start (open)="closeStartButton.focus()">
+      Start Sidenav.
+      <br>
+      <button md-button #closeStartButton (click)="start.close()">Close</button>
+      <button md-button (click)="logout()">Logout</button>
+    </md-sidenav>
+
+    <button md-button (click)="start.open()">Open start sidenav</button>
+
+    <router-outlet></router-outlet>
+
+</md-sidenav-layout>

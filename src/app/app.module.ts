@@ -8,12 +8,17 @@ import { MaterialModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { GameComponent } from './game/game.component';
-import { CreateComponent } from './game/create/create.component';
-import { RoleComponent } from './game/role/role.component';
+import { CreateComponent } from './create/create.component';
+import { RoleComponent } from './role/role.component';
 import { CardBaseComponent } from './shared/card-base/card-base.component';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+<<<<<<< HEAD
 import { CycleComponent } from './game/cycle/cycle.component';
 import { JoinComponent } from './game/join/join.component';
+=======
+import { LobbyComponent } from './lobby/lobby.component';
+import { MenuComponent } from './menu/menu.component';
+>>>>>>> 37558297433571dfa34cff1c42582b419e758799
 
 
 var firebaseConfig = {
@@ -36,8 +41,13 @@ const myFirebaseAuthConfig = {
     CreateComponent,
     RoleComponent,
     CardBaseComponent,
+<<<<<<< HEAD
     CycleComponent,
     JoinComponent
+=======
+    LobbyComponent,
+    MenuComponent
+>>>>>>> 37558297433571dfa34cff1c42582b419e758799
   ],
   imports: [
     BrowserModule,

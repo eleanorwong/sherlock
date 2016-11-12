@@ -1,0 +1,9 @@
+<p>
+  lobby works!
+</p>
+
+<ul>
+  <li *ngFor="let user of users | async">
+    <span>{{user | json}}</span>
+  </li>
+</ul>
