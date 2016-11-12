@@ -3,10 +3,10 @@
       Start Sidenav.
       <br>
       <button md-button #closeStartButton (click)="start.close()">Close</button>
-      <button md-button (click)="logout()">Logout</button>
+      <button md-button (click)="start.close(); logout();">Logout</button>
     </md-sidenav>
 
-    <button md-button (click)="start.open()">Open start sidenav</button>
+    <button *ngIf="showNav" md-button (click)="start.open()">Open start sidenav</button>
 
     <router-outlet></router-outlet>
 

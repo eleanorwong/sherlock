@@ -12,7 +12,9 @@ import { CreateComponent } from './create/create.component';
 import { RoleComponent } from './role/role.component';
 import { CardBaseComponent } from './shared/card-base/card-base.component';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
-import { JoinComponent } from './game/join/join.component';
+import { VoteComponent } from './game/actions/vote/vote.component';
+import { TargetComponent } from './game/actions/target/target.component';
+import { JoinComponent } from './join/join.component';
 import { LobbyComponent } from './lobby/lobby.component';
 import { MenuComponent } from './menu/menu.component';
 
@@ -37,6 +39,8 @@ const myFirebaseAuthConfig = {
     CreateComponent,
     RoleComponent,
     CardBaseComponent,
+    VoteComponent,
+    TargetComponent,
     JoinComponent,
     LobbyComponent,
     MenuComponent
