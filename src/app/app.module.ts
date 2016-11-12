@@ -12,6 +12,7 @@ import { CreateComponent } from './game/create/create.component';
 import { RoleComponent } from './game/role/role.component';
 import { CardBaseComponent } from './shared/card-base/card-base.component';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+import { CycleComponent } from './game/cycle/cycle.component';
 
 
 var firebaseConfig = {
@@ -33,7 +34,8 @@ const myFirebaseAuthConfig = {
     GameComponent,
     CreateComponent,
     RoleComponent,
-    CardBaseComponent
+    CardBaseComponent,
+    CycleComponent
   ],
   imports: [
     BrowserModule,

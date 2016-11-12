@@ -12,6 +12,7 @@ const routes: Routes = [
     { path: 'game', component: GameComponent,
         children: [
             { path: '' },
+            {':id', component: CycleComponent },
             { path: 'create', component: CreateComponent },
             { path: 'role', component: RoleComponent }
         ]
