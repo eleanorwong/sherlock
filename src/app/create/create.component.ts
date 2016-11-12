@@ -28,7 +28,8 @@ export class CreateComponent implements OnInit {
           dayLength: 5,
           nightLength: 5
       },
-      players: []
+      players: [],
+      active: false
   };
 
   af: AngularFire;
