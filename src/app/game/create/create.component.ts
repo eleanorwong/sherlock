@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../../models/game';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 @Component({
   selector: 'app-create',
@@ -13,11 +13,14 @@ export class CreateComponent implements OnInit {
       config: {
           dayLength: 5,
           nightLength: 5
-      }
+      },
+      players: []
   };
 
+  af: AngularFire;
+  uid: string;
   games: FirebaseListObservable<any[]>;
-
+  user: FirebaseListObservable<any[]>;
   submitted = false;
 
   onSubmit() {
@@ -25,12 +28,25 @@ export class CreateComponent implements OnInit {
   }
 
   createGame() {
-      console.log("create game");
-      this.games.push(this.newGame);
+      this.games.push(this.newGame).then((item) => {
+          this.user.update(this.uid, {activeGame: item.key});
+          this.af.database.list('games/'+item.key+'/players/').update(
+              this.uid,
+              {
+                  isAlive: true
+              }
+          );
+      });
   }
 
   constructor(af: AngularFire) {
+    this.af = af;
+    af.auth.subscribe((auth) => {
+        this.uid = auth.uid;
+    });
+
     this.games = af.database.list('/games');
+    this.user = af.database.list('/users/');
   }
 
   ngOnInit() {
