@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { GameComponent } from './game/game.component';
-import { JoinComponent } from './game/join/join.component';
+import { JoinComponent } from './join/join.component';
 import { CreateComponent } from './create/create.component';
 import { RoleComponent } from './role/role.component';
 import { LobbyComponent } from './lobby/lobby.component';
