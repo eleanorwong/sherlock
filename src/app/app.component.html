@@ -1,6 +1,11 @@
 <h1>
   {{title}}
 </h1>
+<ul>
+  <li class="text" *ngFor="let item of items | async">
+    {{item.$value}}
+  </li>
+</ul>
 <nav>
   <a routerLink="/login" routerLinkActive="active">Login</a>
   <a routerLink="/game" routerLinkActive="active">Game</a>

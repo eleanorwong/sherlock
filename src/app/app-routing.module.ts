@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent }   from './login/login.component';
 import { GameComponent }      from './game/game.component';
 import { CreateComponent } from './game/create/create.component';
+import { RoleComponent }      from './game/role/role.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -11,7 +12,8 @@ const routes: Routes = [
     { path: 'game', component: GameComponent,
         children: [
             { path: '' },
-            { path: 'create', component: CreateComponent }
+            { path: 'create', component: CreateComponent },
+            { path: 'role', component: RoleComponent }
         ]
     }
 ];
