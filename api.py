@@ -19,7 +19,7 @@ class game(object):
   def __init__(self, gameID):
     super(game, self).__init__()
     self.gameID = gameID
-    db.child("games").child(gameID).child("winner").set()
+    db.child("games").child(gameID).child("winner").set("")
     self.end_of_day = True
     self.num_mafia_remaining = 4
     self.num_town_remaining = 0
