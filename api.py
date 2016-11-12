@@ -25,7 +25,7 @@ class game(object):
     self.end_of_day = True
     self.num_mafia_remaining = 4
     self.num_town_remaining = 0
-"""
+  """
   def giveRoles(self):
     s = Set([])
 
@@ -56,7 +56,7 @@ class game(object):
         db.child("games").child(self.gameID).child("players").child(r).child("role").set("VILLAGER")
         s.remove(r)   
       tupleCount -= 1
-"""
+  """
   def death(self, userID, deathCause):
     deadPlayer = db.child("games").child(self.gameID).child("players").child(userID)
     role = deadPlayer.child("role").get()
