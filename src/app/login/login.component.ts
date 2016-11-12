@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public af: AngularFire, private router: Router) { 
+  constructor(public af: AngularFire, private router: Router) {
 
     this.af.auth.subscribe(auth => {
       if(auth != null) {
-        this.router.navigate(['menu']); 
+        this.router.navigate(['menu']);
       }
     });
   }
@@ -33,7 +33,9 @@ export class LoginComponent implements OnInit {
       }).subscribe(response => {
         if(response.length === 0) {
           this.af.database.list('/users/').update(auth.uid, {
-            activeGame: "" 
+            activeGame: "",
+            photo: auth.auth.photoURL,
+            name: auth.auth.displayName
           });
         }
         items.unsubscribe();
