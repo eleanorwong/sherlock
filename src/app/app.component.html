@@ -1,4 +1,8 @@
 <h1>
   {{title}}
-  <app-login></app-login>
 </h1>
+<nav>
+  <a routerLink="/login" routerLinkActive="active">Login</a>
+  <a routerLink="/game" routerLinkActive="active">Game</a>
+</nav>
+<router-outlet></router-outlet>
