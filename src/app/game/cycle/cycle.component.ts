@@ -11,9 +11,6 @@ export class CycleComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.route.params.forEach((params: Params) => {
-      let id = +params['id'];
-    });
   }
 
 }
