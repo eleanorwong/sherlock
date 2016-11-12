@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-base.component.scss']
 })
 export class CardBaseComponent implements OnInit {
+  isRoleCard = true;
 
   constructor() { }
 

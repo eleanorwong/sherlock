@@ -1,0 +1,28 @@
+
+// starting point for circle
+#circle {
+  position: relative;
+  background-color: #09f;
+  margin: 20px auto;
+  width: 400px;
+  height: 400px;
+  border-radius: 300px;
+}
+
+// text that goes into the circle
+#circle-text {
+  position: absolute;
+  font-size: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+
+ //to distinguish from parent components
+ #card-base {
+     background-color: lightblue;
+     width: 400px;
+     padding: 25px;
+     border: 2px dashed gray;
+ }
