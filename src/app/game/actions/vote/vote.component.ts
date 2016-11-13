@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-vote',
@@ -16,11 +17,11 @@ export class VoteComponent implements OnInit {
   players: any;
   votedPlayer: any;
 
-  constructor(private af: AngularFire) {
+  constructor(private af: AngularFire, private authService: AuthService) {
     this.isLoading = false;
     this.players = [];
     this.af.auth.subscribe((auth) => {
-        this.uid = auth.uid;
+        this.uid = authService.getUID();
         this.af.database.object('/users/' + this.uid).subscribe(result => {
           this.name = result.name;
         })

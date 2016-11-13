@@ -3,6 +3,7 @@ import { Game } from '../models/game';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-create',
@@ -14,7 +15,7 @@ export class CreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(af: AngularFire, private router: Router, private location: Location) {
+  constructor(af: AngularFire, private router: Router, private location: Location, private authService: AuthService) {
     this.af = af;
     af.auth.subscribe((auth) => {
         this.uid = auth.uid;

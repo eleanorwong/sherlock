@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-join',
@@ -14,10 +15,10 @@ export class JoinComponent implements OnInit {
   isLoading: boolean;
   uid: string;
 
-  constructor(private af: AngularFire, private location: Location, private router: Router) {
+  constructor(private af: AngularFire, private location: Location, private router: Router, private authService: AuthService) {
     this.isLoading = false;
     this.af.auth.subscribe((auth) => {
-        this.uid = auth.uid;
+        this.uid = authService.getUID();
     })
   }
 
