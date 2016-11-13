@@ -32,8 +32,13 @@ To get more help on the `angular-cli` use `ng --help` or go check out the [Angul
 
 ## How to run the web-app
 1) Clone the repo
+
 2) In the directory > npm install
+
 3) > ng-serve
+
 4) > python3 api.py
+
 5) create game, invite 3+ more friends.
+
 6) start game
