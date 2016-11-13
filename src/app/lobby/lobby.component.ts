@@ -23,10 +23,7 @@ export class LobbyComponent implements OnInit {
       this.route.params.forEach((params: Params) => {
         this.gameID = params["id"];
       });
-      this.af.auth.subscribe((auth) => {
-          this.uid = authService.getUID();
-          this.getAllUsers();
-      })
+      this.getAllUsers();
   }
 
   ngOnInit() {
@@ -36,8 +33,8 @@ export class LobbyComponent implements OnInit {
   }
 
   leaveGame() {
-      console.log("leave", this.uid);
-      this.af.database.list('/games/'+this.gameID+'/players/').remove(this.uid).then(
+      console.log("leave", this.authService.getUID());
+      this.af.database.list('/games/'+this.gameID+'/players/').remove(this.authService.getUID()).then(
           () => {
               this.router.navigate(['menu']);
           }

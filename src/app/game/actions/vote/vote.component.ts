@@ -21,8 +21,7 @@ export class VoteComponent implements OnInit {
     this.isLoading = false;
     this.players = [];
     this.af.auth.subscribe((auth) => {
-        this.uid = authService.getUID();
-        this.af.database.object('/users/' + this.uid).subscribe(result => {
+        this.af.database.object('/users/' + this.authService.getUID()).subscribe(result => {
           this.name = result.name;
         })
         this.getValidVoters();

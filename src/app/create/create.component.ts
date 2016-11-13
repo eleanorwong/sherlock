@@ -17,9 +17,6 @@ export class CreateComponent implements OnInit {
 
   constructor(af: AngularFire, private router: Router, private location: Location, private authService: AuthService) {
     this.af = af;
-    af.auth.subscribe((auth) => {
-        this.uid = auth.uid;
-    });
 
     this.games = af.database.list('/games');
     this.user = af.database.list('/users/');
@@ -46,9 +43,9 @@ export class CreateComponent implements OnInit {
 
   createGame() {
       this.games.push(this.newGame).then((item) => {
-          this.user.update(this.uid, {activeGame: item.key});
+          this.user.update(this.authService.getUID(), {activeGame: item.key});
           this.af.database.list('games/' + item.key + '/players/').update(
-              this.uid,
+              this.authService.getUID(),
               {
                   isAlive: true
               }

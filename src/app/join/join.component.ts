@@ -13,13 +13,9 @@ export class JoinComponent implements OnInit {
 
   gameID: string;
   isLoading: boolean;
-  uid: string;
 
   constructor(private af: AngularFire, private location: Location, private router: Router, private authService: AuthService) {
     this.isLoading = false;
-    this.af.auth.subscribe((auth) => {
-        this.uid = authService.getUID();
-    })
   }
 
   ngOnInit() {
@@ -37,12 +33,12 @@ export class JoinComponent implements OnInit {
       game.subscribe((snapshot) => {
           if(snapshot.exists()) {
                 this.af.database.list('games/'+this.gameID+'/players/').update(
-                    this.uid,
+                    this.authService.getUID(),
                     {
                         isAlive: true
                     }
                 );
-                this.af.database.list('/users/').update(this.uid, {activeGame: this.gameID});
+                this.af.database.list('/users/').update(this.authService.getUID(), {activeGame: this.gameID});
           }
           this.router.navigate([this.gameID+'/lobby/'])
       })
