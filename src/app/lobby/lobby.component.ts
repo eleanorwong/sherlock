@@ -4,6 +4,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Router } from '@angular/router';
 import { GameService } from '../services/game.service';
 import { AuthService } from '../services/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-lobby',
@@ -20,7 +21,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   private playerListener;
   private leaveListener;
 
-  constructor(private route: ActivatedRoute, private af: AngularFire, private router: Router, private gameService: GameService, private authService: AuthService) {
+  constructor(private route: ActivatedRoute, private af: AngularFire, private router: Router, private gameService: GameService, private authService: AuthService, private location: Location) {
       this.players = [];
       this.route.params.forEach((params: Params) => {
         this.gameID = params["id"];
@@ -48,6 +49,10 @@ export class LobbyComponent implements OnInit, OnDestroy {
               )
           }
       )
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   startGame() {
