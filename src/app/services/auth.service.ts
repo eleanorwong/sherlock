@@ -33,4 +33,8 @@ export class AuthService {
   public getUID() {
     return this.auth != null ? this.auth.uid : " ";
   }
+
+  public getName() {
+    return this.auth != null ? this.auth.name : "";
+  }
 }

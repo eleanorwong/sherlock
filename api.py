@@ -2,6 +2,7 @@ from flask import Flask, json, request
 import pyrebase
 import json
 import random
+from flask_cors import CORS, cross_origin
 
 config = {
   "apiKey": "AIzaSyDzV4LHW-Z177LuCopYh7Vsd65AShwU3F8",
@@ -15,6 +16,8 @@ firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
 app = Flask(__name__)
+CORS(app)
+
 
 userSaved = ""
 

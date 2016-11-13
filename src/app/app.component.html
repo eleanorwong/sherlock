@@ -1,6 +1,6 @@
 <md-sidenav-layout>
     <md-sidenav #start (open)="closeStartButton.focus()">
-      Start Sidenav.
+      <h3>{{(af.auth | async)?.facebook.displayName}}'s Journal</h3>
       <br>
       <button md-button #closeStartButton (click)="start.close()">Close</button>
       <button md-button (click)="start.close(); logout();">Logout</button>

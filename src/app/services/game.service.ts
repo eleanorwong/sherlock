@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Jsonp, URLSearchParams } from '@angular/http';
+import { Http, Response } from '@angular/http';
 
 @Injectable()
 export class GameService {
-  constructor(private jsonp: Jsonp) {}
+    constructor (private http: Http) {}
+
 
   startGame (gameID: string) {
       console.log(gameID)
       let url = 'http://localhost:5000/start/'+gameID;
-
-    // TODO: Add error handling
-    return this.jsonp
-               .post(url, { })
-               .map(response => <string[]> response.json()[1]);
+      this.http.get(url).subscribe((res) => {
+          console.log(res);
+          return res;
+      });
   }
 }

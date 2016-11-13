@@ -3,20 +3,38 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background: #b7f7f0;
+    background: url('http://sherlockholmesexhibition.com/wp-content/uploads/carriage-950x635.jpg');
+    background-position: 0px 50px;
+    background-size: cover;
     height: 100vh;
+
+}
+
+.title {
+    color: white;
+    font-size: 24pt;
+    text-transform: uppercase;
+    font-family: 'Segoe UI';
+    letter-spacing: 5px;
+}
+
+.damask {
+    position: absolute;
+    z-index: 2;
 }
 
 .button {
-    border: none;
     width: 250px;
     height: 75px;
-    border-radius: 25px;
+    border-radius: 0px;
     font-size: 14pt;
+    font-family: 'Segoe UI';
     text-transform: uppercase;
-    background: #3b5998;
+    background: maroon;
     color: #eeeeee;
     letter-spacing: 3px;
+    border-width: 1px;
+    box-shadow: 2px 2px 4px 1px #333333;
 }
 
 .logo {

@@ -20,17 +20,15 @@ export class VoteComponent implements OnInit {
   constructor(private af: AngularFire, private authService: AuthService) {
     this.isLoading = false;
     this.players = [];
-    this.af.auth.subscribe((auth) => {
-        this.af.database.object('/users/' + this.authService.getUID()).subscribe(result => {
-          this.name = result.name;
-        })
-        this.getValidVoters();
+    this.af.database.object('/users/' + this.authService.getUID()).subscribe(result => {
+      this.name = result.name;
     })
+    this.getValidVoters();
   }
 
   getValidVoters () {
     //console.log(this.uid);
-    const activeGameID = this.af.database.object('/users/' + this.uid + '/activeGame');
+    const activeGameID = this.af.database.object('/users/' + this.authService.getUID() + '/activeGame');
     activeGameID.subscribe( result => {
       const playersListner = this.af.database.list('/games/' + result.$value + '/players/');
       playersListner.subscribe(playerList => {
