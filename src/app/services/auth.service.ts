@@ -16,7 +16,7 @@ export class AuthService {
         this.router.navigate(['login']);
       } else if(this.router.url === '/login' && auth != null) {
           this.af.database.object("users/"+this.getUID()+"/activeGame/").subscribe((game) => {
-              if(game !== undefined && game !== "") {
+              if(game.$value !== "" && game !== undefined && game !== null) {
                   this.router.navigate([game.$value+'/lobby']);
               } else {
                   this.router.navigate(['menu']);
