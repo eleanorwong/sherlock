@@ -19,22 +19,22 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.af.auth.login().then(auth => {
+        console.log(auth);
       if(auth != null) {
         const items = this.af.database.list('/users', {
           query: {
             orderByKey: true,
-            equalTo: this.authService.getUID()
+            equalTo: auth.uid
           }
         }).subscribe(response => {
+            console.log(response);
           if(response.length === 0) {
-            if(this.authService.getUID() == " ") {
-              this.af.database.list('/users/').update(this.authService.getUID(), {
+              this.af.database.list('/users/').update(auth.uid, {
                 activeGame: "",
-                picture: auth.facebook.photoURL,
-                name: auth.facebook.displayName
+                picture: auth.auth.photoURL,
+                name: auth.auth.displayName
               });
             }
-          }
           items.unsubscribe();
         });
       }
