@@ -1,5 +1,18 @@
 .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: row;
+}
+
+.app-container {
+    padding: 15;
+    height: 100vh;
+}
+
+:host /deep/ div {
+    font-family: 'Roboto', sans-serif;
+}
+
+:host /deep/ h2 {
+    font-family: 'Roboto', sans-serif;
 }

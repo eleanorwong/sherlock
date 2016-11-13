@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.display-photo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.display-name {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+h2 {
+}
