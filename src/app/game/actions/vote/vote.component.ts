@@ -40,7 +40,8 @@ export class VoteComponent implements OnInit {
             this.players.push(
               {
                 name: result.name,
-                isAlive: player.isAlive
+                isAlive: player.isAlive,
+                uid: player.$key
               });
           });
         });

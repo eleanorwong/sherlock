@@ -7,7 +7,7 @@
 <div *ngIf="clickflag">
 <md-radio-group [(ngModel)]="votedPlayer">
   <div *ngFor="let player of players">
-      <md-radio-button *ngIf="player.isAlive" [value]="player.name">
+      <md-radio-button *ngIf="player.isAlive" [value]="player.uid">
         {{player.name}}
       </md-radio-button>
   </div>
