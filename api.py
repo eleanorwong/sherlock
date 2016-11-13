@@ -16,6 +16,8 @@ db = firebase.database()
 
 app = Flask(__name__)
 
+userSaved = ""
+
 class game(object):
   """docstring for game"""
 
@@ -58,6 +60,9 @@ class game(object):
 
   def death(self, userID, deathCause):
     deadPlayer = db.child("games").child(self.gameID).child("players").child(userID)
+    if deadPlayer.val() == userSaved:
+      userSaved = ""
+      return
     role = deadPlayer.child("role").get()
     if role.val() == "MAFIA":
       self.num_mafia_remaining -= 1
@@ -78,22 +83,30 @@ def stream_handler(post):
   if path[1] == "games":
     gameID = path[2]
     userID = path[4]
-
-  # if path[len(path) - 2] == "past_games":
-  #   me.finishedGame(path[2])
-  if path[len(path) - 1] == "isAlive" and post["data"] == False:
-    print("HERE")
     dayid = db.child("games").child(gameID).child("currentDay").get()
-    cause = db.child("days").child(dayid.val()).child("newspaper").child(userID).get()
-    print(cause.val())
-    db.child("games").child(gameID).child("players").child(userID).child("causeOfDeath").set(cause.val())
-  print(path[len(path) - 1])
+
+    if db.child("days").child(dayid.val()).child("report").get() != None:
+      for person in db.child("days").child(dayid.val()).child("report").get().each():
+        db.child("games").child(gameID).child("players").child(person.key()).child("actionHistory").set(person.val())
+
+    if path[len(path) - 1] == "isAlive" and post["data"] == False:
+      cause = db.child("days").child(dayid.val()).child("newspaper").child(userID).get()
+      db.child("games").child(gameID).child("players").child(userID).child("causeOfDeath").set(cause.val())
+
+    if path[len(path) - 1] == "isNight":
+      userSaved = ""
 
 
 @app.route('/start/<startID>')
 def api_start(startID):
-  mygame = game()
+  mygame = game(startID)
+  db.child(days).set(mygame.gameID)
   mygame.giveRoles()
+
+@app.route('/save')
+def api_savePlayer(userID, doctorID):
+  if doctorID == db.child("games").child("gameID").child("players").child(userID).child("role").get().val():
+    userSaved = userID
 
 # mygame = game("-KWNPXBaDrA8BK8WZBK4")
 db.child("games").child("-KWNPXBaDrA8BK8WZBK4").child("players").child("Mortimer 'Morty' Smith").child("role").set("MAFIA")
