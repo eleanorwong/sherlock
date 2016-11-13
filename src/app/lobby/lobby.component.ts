@@ -18,6 +18,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   private players;
   private uid;
   private playerListener;
+  private leaveListener;
 
   constructor(private route: ActivatedRoute, private af: AngularFire, private router: Router, private gameService: GameService, private authService: AuthService) {
       this.players = [];
@@ -28,9 +29,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.route.params.forEach((params: Params) => {
-      this.gameID = params["id"];
-    });
+      this.players = [];
   }
   
   ngOnDestroy() {
@@ -39,10 +38,11 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
   leaveGame() {
       console.log("leave", this.authService.getUID());
-      this.af.database.list('/games/'+this.gameID+'/players/').remove(this.authService.getUID()).then(
+      this.leaveListener = this.af.database.list('/games/'+this.gameID+'/players/').remove(this.authService.getUID()).then(
           () => {
               this.af.database.object('/users/'+this.uid+'/activeGame').set("").then(
                   () => {
+                      this.players = [];
                       this.router.navigate(['menu']);
                   }
               )
@@ -59,6 +59,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
         (playerList) => {
             playerList.forEach(
                 (player) => {
+                    this.players = [];
                     const userListener = this.af.database.object('/users/'+ player.$key).subscribe(
                         (result) => {
                             this.players.push({
@@ -69,7 +70,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
                         }
                     )
                 }
-            )
+            );
         }
     )
   }
