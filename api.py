@@ -103,7 +103,8 @@ def stream_handler(post):
 @app.route('/start/<startID>')
 def api_start(startID):
   mygame = game(startID)
-  db.child("days").set(mygame.gameID)
+  db.child("days").child(mygame.gameID).child("isNight").set(True)
+  db.child("games").child(mygame.gameID).child("currentDay").set(db.child("days").child(mygame.gameID).get().val())
   mygame.giveRoles()
 
 @app.route('/save')
