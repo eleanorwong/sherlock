@@ -7,12 +7,14 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
   styleUrls: ['./vote.component.scss']
 })
 export class VoteComponent implements OnInit {
+  clickflag = false;
 
   isLoading: boolean;
   uid: string;
   name: string;
   activeGameID: string;
   players: any;
+  votedPlayer: any;
 
   constructor(private af: AngularFire) {
     this.isLoading = false;
@@ -44,6 +46,17 @@ export class VoteComponent implements OnInit {
         });
       });
     });
+  }
+
+  collectVote() {
+  }
+
+  clicked() {
+    this.clickflag = !this.clickflag;
+  }
+
+  onSubmit() {
+    console.log(this.votedPlayer)
   }
 
   ngOnInit() {

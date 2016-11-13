@@ -2,10 +2,17 @@
   vote works!
 </p>
 
-<md-radio-group>
+
+<button md-raised-button (click)="clicked()" color="primary"> Vote! </button>
+<div *ngIf="clickflag">
+<md-radio-group [(ngModel)]="votedPlayer">
   <div *ngFor="let player of players">
-    <md-radio-button *ngIf="player.isAlive">
-      {{player.name}}
-    </md-radio-button>
+      <md-radio-button *ngIf="player.isAlive" [value]="player.name">
+        {{player.name}}
+      </md-radio-button>
   </div>
 </md-radio-group>
+
+  <button type="submit" class="btn btn-default" (click)="onSubmit()">Submit</button>
+  <button type="button" class="btn btn-default" (click)="clicked()"> Cancel </button>
+</div>
