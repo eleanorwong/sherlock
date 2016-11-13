@@ -23,12 +23,12 @@ export class LoginComponent implements OnInit {
         const items = this.af.database.list('/users', {
           query: {
             orderByKey: true,
-            equalTo: this.authService.getUID()
+            equalTo: auth.uid
           }
         }).subscribe(response => {
           if(response.length === 0) {
-            if(this.authService.getUID()) {
-              this.af.database.list('/users/').update(this.authService.getUID(), {
+            if(auth.uid) {
+              this.af.database.list('/users/').update(auth.uid, {
                 activeGame: "",
                 picture: auth.facebook.photoURL,
                 name: auth.facebook.displayName
