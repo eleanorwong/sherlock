@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-join',
@@ -13,7 +14,7 @@ export class JoinComponent implements OnInit {
   isLoading: boolean;
   uid: string;
 
-  constructor(private af: AngularFire, private location: Location) {
+  constructor(private af: AngularFire, private location: Location, private router: Router) {
     this.isLoading = false;
     this.af.auth.subscribe((auth) => {
         this.uid = auth.uid;
@@ -42,6 +43,7 @@ export class JoinComponent implements OnInit {
                 );
                 this.af.database.list('/users/').update(this.uid, {activeGame: this.gameID});
           }
+          this.router.navigate([this.gameID+'/lobby/'])
       })
 
 

@@ -20,3 +20,7 @@ $theme: md-light-theme($primary, $accent);
 
   @include angular-material-theme($dark-theme);
 }
+
+:host /deep/ body {
+    color: '#f8f800'
+}

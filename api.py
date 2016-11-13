@@ -75,25 +75,30 @@ class game(object):
 
 def stream_handler(post):
   path = post["path"].split("/")
-  gameID = path[2]
+  if path[1] == "games":
+    gameID = path[2]
+    userID = path[4]
 
   # if path[len(path) - 2] == "past_games":
   #   me.finishedGame(path[2])
-  # if path[len(path) - 1] == "isAlive" and path["data"] == False:
+  if path[len(path) - 1] == "isAlive" and post["data"] == False:
+    print("HERE")
+    dayid = db.child("games").child(gameID).child("currentDay").get()
+    cause = db.child("days").child(dayid.val()).child("newspaper").child(userID).get()
+    print(cause.val())
+    db.child("games").child(gameID).child("players").child(userID).child("causeOfDeath").set(cause.val())
+  print(path[len(path) - 1])
 
-  #   me.addActiveGame(path[2], post["data"])
-
-  # Game database info
 
 @app.route('/start/<startID>')
 def api_start(startID):
-  return "Will start the game %s\n" % startID
+  mygame = game()
+  mygame.giveRoles()
 
-mygame = game("-KWNPXBaDrA8BK8WZBK4")
+# mygame = game("-KWNPXBaDrA8BK8WZBK4")
 db.child("games").child("-KWNPXBaDrA8BK8WZBK4").child("players").child("Mortimer 'Morty' Smith").child("role").set("MAFIA")
-db.child("games").child("-KWNPXBaDrA8BK8WZBK4").child("config").child("num_mafia_remaining").set(4)
-mygame.giveRoles()
-mygame.death("Mortimer 'Morty' Smith", "Lynched by town")
+# mygame.giveRoles()
+# mygame.death("Mortimer 'Morty' Smith", "Lynched by town")
 
 my_stream = db.child("/").stream(stream_handler)
 
