@@ -11,6 +11,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
 
   constructor(private af: AngularFire, private router: Router, private authService: AuthService) {
+
   }
 
   logout() {
