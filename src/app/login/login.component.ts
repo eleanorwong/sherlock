@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
           }
         }).subscribe(response => {
           if(response.length === 0) {
-            if(this.authService.getUID() != "") {
+            if(this.authService.getUID()) {
               this.af.database.list('/users/').update(this.authService.getUID(), {
                 activeGame: "",
                 picture: auth.facebook.photoURL,
