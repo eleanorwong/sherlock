@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Router } from '@angular/router';
@@ -11,12 +11,13 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./lobby.component.scss'],
   providers: [GameService]
 })
-export class LobbyComponent implements OnInit {
+export class LobbyComponent implements OnInit, OnDestroy {
 
   private gameID;
   private users: FirebaseListObservable<any>;
   private players;
   private uid;
+  private playerListener;
 
   constructor(private route: ActivatedRoute, private af: AngularFire, private router: Router, private gameService: GameService, private authService: AuthService) {
       this.players = [];
@@ -30,6 +31,10 @@ export class LobbyComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       this.gameID = params["id"];
     });
+  }
+  
+  ngOnDestroy() {
+      this.playerListener.unsubscribe();
   }
 
   leaveGame() {
@@ -50,16 +55,17 @@ export class LobbyComponent implements OnInit {
   }
 
   getAllUsers() {
-    this.af.database.list('/games/'+this.gameID+'/players/').subscribe(
+    this.playerListener = this.af.database.list('/games/'+this.gameID+'/players/').subscribe(
         (playerList) => {
             playerList.forEach(
                 (player) => {
-                    this.af.database.object('/users/'+ player.$key).subscribe(
+                    const userListener = this.af.database.object('/users/'+ player.$key).subscribe(
                         (result) => {
                             this.players.push({
                                 name: result.name,
                                 picture: result.picture
                             });
+                            userListener.unsubscribe();
                         }
                     )
                 }
