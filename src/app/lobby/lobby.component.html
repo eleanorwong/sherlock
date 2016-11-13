@@ -11,13 +11,16 @@
             <span>{{player.name}}</span>
         </div>
     </div>
+    <div class="container">
+        Invite your friends using the following code:<br />
+        <b>{{gameID}}</b>
+    </div>
     <div class="container" *ngIf="players.length > 3">
         <button (click)="startGame()" md-button>Start Game</button>
     </div>
     <div *ngIf="players.length < 4">
         You need at least 4 players to start the game!<br />
-        Invite your friends using the following code:<br />
-        <b>{{gameID}}</b>
+
     </div>
     <div>
         <button (click)="leaveGame()" md-button>Leave Game</button>
