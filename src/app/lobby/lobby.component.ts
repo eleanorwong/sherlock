@@ -39,7 +39,11 @@ export class LobbyComponent implements OnInit {
       console.log("leave", this.uid);
       this.af.database.list('/games/'+this.gameID+'/players/').remove(this.uid).then(
           () => {
-              this.router.navigate(['menu']);
+              this.af.database.object('/users/'+this.uid+'/activeGame').set("").then(
+                  () => {
+                      this.router.navigate(['menu']);
+                  }
+              )
           }
       )
   }
